@@ -18,54 +18,6 @@ class KOFI_Rest {
 				"log_fund"
 			),
 			"args" => array(
-				/* "message_id" => array(
-					"required" => false,
-					"type" => "string"
-				),
-				"kofi_transaction_id" => array(
-					"required" => false,
-					"type" => "string"
-				),
-				"timestamp" => array(
-					"required" => false,
-					"type" => "timestamp"
-				),
-				"type" => array(
-					"required" => false,
-					"type" => "string"
-				),
-				"from_name" => array(
-					"required" => false,
-					"type" => "string"
-				),
-				"message" => array(
-					"required" => false,
-					"type" => "string"
-				),
-				"amount" => array(
-					"required" => false,
-					"type" => "float"
-				),
-				"currency" => array(
-					"required" => false,
-					"type" => "string"
-				),
-				"url" => array(
-					"required" => false,
-					"type" => "string"
-				),
-				"is_subscription_payment" => array(
-					"required" => false,
-					"type" => "boolean"
-				),
-				"is_first_subscription_payment" => array(
-					"required" => false,
-					"type" => "boolean"
-				),
-				"is_public" => array(
-					"required" => false,
-					"type" => "boolean"
-				) */
 				"data" => array(
 					"required" => true,
 					"type" => "string"

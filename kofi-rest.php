@@ -38,6 +38,23 @@ class KOFI_Rest {
 				return true;
 			}
 		));
+
+		register_rest_route("kofi_funds/v1", "/store_income", array(
+			"methods" => "POST",
+			"callback" => array(
+				$this,
+				"update_store_income"
+			),
+			"args" => array(
+				"data" => array(
+					"required" => true,
+					"type" => "string"
+				)
+			),
+			"permission_callback" => function () {
+				return true;
+			}
+		));
 	}
 
 	public function get_funds (WP_REST_Request $request) {
@@ -68,7 +85,6 @@ class KOFI_Rest {
 		$body = $request->get_body();
 		$parsed = $this->parse_url($body);
 		$data = json_decode($parsed["data"], true);
-		file_put_contents(dirname(__FILE__) . "/log/log.txt", json_encode($data), FILE_APPEND | LOCK_EX);
 
 		$post_data = array(
 			"post_author" => 1,
@@ -96,6 +112,22 @@ class KOFI_Rest {
 		} else {
 			http_response_code(405);
 			echo "{\"success\": false}";
+		}
+	}
+
+	public function update_store_income (WP_REST_Request $request) {
+		$body = $request->get_body();
+		$parsed = $this->parse_url($body);
+		$data = json_decode($parsed["data"], true);
+
+		try {
+			$post_id = $data["post_id"];
+			update_post_meta($post_id, "amount", $data["amount"]);
+			update_post_meta($post_id, "timestamp", $data["timestamp"]);
+
+			echo "{\"success\": true}";
+		} catch (Exception $e) {
+			echo $e->getMessage();
 		}
 	}
 
